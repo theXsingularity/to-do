@@ -1,0 +1,82 @@
+* { padding: 0; margin: 0; }
+
+html, body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    background: green;
+    height: 100%;
+}
+
+
+/* header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: lightblue;
+    font-size: 30px;
+}
+
+.searchLabel {
+    
+}
+.search {
+    
+}
+.searchContainer{
+    display: flex;
+}
+
+.title {
+    min-width: 260px;
+}
+
+.addTask {
+    width: 50px;
+    
+}
+
+/* ----- main content ----- */
+.contentContainer {
+    display: flex;
+    height: 100%;  
+}
+/* sidebar */
+
+.sidebar{
+    text-align: center;
+    width: 85px;
+    padding-top: 20px;
+    background-color: white;
+}
+
+.inbox {
+    background: none;
+    border: none;
+}
+/* task display */
+.taskDisplay {
+
+    display:flex;
+    padding: 30px;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap; 
+    background: blue;
+    
+}
+
+.taskDiv {
+    border: 10px solid black;
+    width: 200px;
+    margin: 20px;
+    background-color: dimgray;
+    padding: 15px;
+}
