@@ -10,7 +10,7 @@ html, body {
 #content {
     display: flex;
     flex-direction: column;
-    background: green;
+    background: hotpink;
     height: 100%;
 }
 
@@ -19,64 +19,81 @@ html, body {
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 5px;
-    background-color: lightblue;
+    background-color: indianred;
     font-size: 30px;
+    
+}
+
+.searchContainer{
+    display: flex;
+    
 }
 
 .searchLabel {
-    
+    font-size: 15px;
 }
 .search {
     
 }
-.searchContainer{
-    display: flex;
-}
 
 .title {
-    min-width: 260px;
+    
 }
 
 .addTask {
-    width: 50px;
+    min-width: 25px;
+    min-height: 25px;
     
 }
 
 /* ----- main content ----- */
 .contentContainer {
     display: flex;
-    height: 100%;  
+    width: auto;
+    height: 100%; 
 }
 /* sidebar */
 
 .sidebar{
+    display:flex;
+    flex-direction: column;
     text-align: center;
-    width: 85px;
+    max-width:  100px;
+    min-width:  100px;
     padding-top: 20px;
-    background-color: white;
+    background-color: tan;
+    
 }
 
-.inbox {
+
+.menuItem{
+    margin-bottom: 10px;
     background: none;
     border: none;
+    font-size: 15px;
 }
-/* task display */
-.taskDisplay {
 
+/* task display */
+
+
+.taskDisplay {
     display:flex;
-    padding: 30px;
+    width: 100%;
+
     justify-content: center;
     align-content: flex-start;
     flex-wrap: wrap; 
-    background: blue;
+    background: lightskyblue;
     
 }
 
 .taskDiv {
+    flex-grow: auto 1;
     border: 10px solid black;
     width: 200px;
     margin: 20px;
-    background-color: dimgray;
+    background-color: lightsteelblue;
     padding: 15px;
 }

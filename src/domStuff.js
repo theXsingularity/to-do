@@ -15,7 +15,7 @@ function createHeader() {
 
     const title = document.createElement('div')
     title.classList.add('title')
-    title.innerHTML = 'YOUR TO-DO LIST'
+    title.innerHTML = 'TO-DO'
 
     const addTask = document.createElement('button')
     addTask.classList.add('addTask')
@@ -38,9 +38,29 @@ function createHeader() {
     
     const inbox = document.createElement('button');
     inbox.classList.add('inbox');
+    inbox.classList.add('menuItem');
     inbox.innerHTML='INBOX'
 
+    const today = document.createElement('button');
+    today.classList.add('today');
+    today.classList.add('menuItem');
+    today.innerHTML='TODAY'
+
+    const upcoming = document.createElement('button');
+    upcoming.classList.add('upcoming');
+    upcoming.classList.add('menuItem');
+    upcoming.innerHTML='UPCOMING'
+
+    const projects = document.createElement('button');
+    projects.classList.add('projects');
+    projects.classList.add('menuItem');
+    projects.innerHTML='PROJECTS'
+
     sidebar.appendChild(inbox)
+    sidebar.appendChild(today)
+    sidebar.appendChild(upcoming)
+    sidebar.appendChild(projects)
+    
 
     return sidebar
   }
