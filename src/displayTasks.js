@@ -1,8 +1,5 @@
-import { createTaskDisplay } from "./layout";
-
-console.log('reading display library')
-
 let myTasks = [];
+
 //the constructor for creating "tasks"
 class Task {
   constructor(title, description, dueDate, priority) {
@@ -12,20 +9,19 @@ class Task {
     this.priority = priority
     this.displayed = false
   }
-  }
+}
 
-  //example tasks and adding to myTasks
-  const task1 = new Task("Laundry", "small load - but need underwear", 'tomorrow', "high");
-  const task2 = new Task("write letter", "its almost a month past her birthday", 'tomorrow', "high");
-  const task3 = new Task("take out trash", "so quick!", 'tomorrow', "high");
-  const task4 = new Task("finish coding", "you can do it", 'tomorrow', "medium");
- 
-  myTasks.push(task1)
-  myTasks.push(task2)
-  myTasks.push(task3)
-  myTasks.push(task4)
+//example tasks and adding to myTasks
+const task1 = new Task("Laundry", "small load - but need underwear", 'tomorrow', "high");
+const task2 = new Task("write letter", "its almost a month past her birthday", 'tomorrow', "high");
+const task3 = new Task("take out trash", "so quick!", 'tomorrow', "high");
+const task4 = new Task("finish coding", "you can do it", 'tomorrow', "medium");
+myTasks.push(task1)
+myTasks.push(task2)
+myTasks.push(task3)
+myTasks.push(task4)
 
-  //creating new DOM elements for displaying "tasks" 
+//creating new DOM elements for displaying "tasks" 
 let taskDiv = document.createElement('div');
 taskDiv.classList.add('taskDiv')
 let titleOutput = document.createElement('div');
@@ -42,9 +38,10 @@ taskDiv.appendChild(priorityOutput);
 // displays array object by creating new DOM elements
 function displayTasks() {
   for (let i=0; i<myTasks.length; i++) {
+    //check if displayed
     if(myTasks[i].displayed === false) {
       titleOutput.innerText = `Title: ${myTasks[i].title}`
-      descriptionOutput.innerText = `Description: ${myTasks[i].descriptionOutput}`;
+      descriptionOutput.innerText = `Description: ${myTasks[i].description}`;
       dueDateOutput.innerText = `Due Date: ${myTasks[i].dueDate}`;
       priorityOutput.innerText = `Priority: ${myTasks[i].priority}`;
       if (myTasks[i].read === false) {
@@ -63,9 +60,5 @@ function displayTasks() {
     } 
   }
 }
-
-
-
-
 
 export {myTasks, Task, displayTasks}

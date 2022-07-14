@@ -37,9 +37,9 @@ function createHeader() {
     return header
 }
 
-//MAIN CONTENT
+/* ----- MAIN CONTENT ----- */
 
-//header function
+/* create header function */
 function createSidebar() {
   const sidebar = document.createElement('div')
   sidebar.classList.add('sidebar')
@@ -73,15 +73,14 @@ function createSidebar() {
   return sidebar
 }
 
-
-//display function
+/* create display function */
 function createTaskDisplay() {
   const taskDisplay = document.createElement('div')
   taskDisplay.setAttribute('id', 'taskDisplay');
   return taskDisplay
 }
 
-//main content function
+/* create main content function */
 function mainContent(){
   const contentContainer = document.createElement('div')
   contentContainer.classList.add('contentContainer');
@@ -90,7 +89,6 @@ function mainContent(){
   return contentContainer
 }
 
-  
 
 
-export { createHeader, createTaskDisplay, mainContent }
+export { createHeader, mainContent }

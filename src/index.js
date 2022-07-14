@@ -9,7 +9,3 @@ content.appendChild(formOverlay)
 displayTasks();
 
 
-
-
-    
-

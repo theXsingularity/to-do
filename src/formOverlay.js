@@ -1,5 +1,4 @@
-import { displayTasks, myTasks, Task } from "./displayTasks";
-
+import { myTasks, Task, displayTasks } from "./displayTasks";
 
 const formOverlay = document.createElement('div');
 formOverlay.setAttribute('id', 'formOverlay');
