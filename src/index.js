@@ -1,25 +1,15 @@
-import {displayTasks} from './displayTasks';
-import {createHeader, createSidebar} from './layout'
+import { displayTasks } from './displayTasks';
+import { formOverlay } from './formOverlay';
+import { createHeader, mainContent } from './layout';
 import './style.css';
 
-/* ----- header ----- */
-
-/* ----- content----- */
-const contentContainer = document.createElement('div')
-contentContainer.classList.add('contentContainer');
-  
-const taskDisplay = document.createElement('div')
-taskDisplay.classList.add('taskDisplay');
-
-contentContainer.appendChild(createSidebar())
-contentContainer.appendChild(taskDisplay)
-
-
-/* ----- appending tree ----- */
 content.appendChild(createHeader()) 
-content.appendChild(contentContainer)
-displayTasks()
+content.appendChild(mainContent())
+content.appendChild(formOverlay)
+displayTasks();
 
-export { taskDisplay }
+
+
+
     
 

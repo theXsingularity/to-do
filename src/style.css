@@ -8,12 +8,8 @@ html, body {
 }
 
 #content {
-    display: flex;
-    flex-direction: column;
-    background: red;
     height: 100%;
 }
-
 
 /* header */
 .header {
@@ -23,18 +19,13 @@ html, body {
     padding: 5px;
     background-color: #db4c3f;
     height: 30px;
-    
 }
 
 .searchContainer{
     display: flex;
     padding-left: 40px;
-    
 }
 
-.searchLabel {
-    font-size: 15px;
-}
 .search {
     
 }
@@ -51,18 +42,18 @@ html, body {
     padding-right: 8px;
     color:white;
     font-size: 25px;
-    
-    
 }
 
 /* ----- main content ----- */
 .contentContainer {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     width: auto;
     height: 100%; 
+    background-color: orange;
 }
-/* sidebar */
 
+/* sidebar */
 .sidebar{
     display:flex;
     flex-direction: column;
@@ -85,8 +76,6 @@ html, body {
     font-weight: bold;
 }
 
-
-
 .menuItem{
     text-align: left;
     padding-top: 10px;
@@ -94,31 +83,24 @@ html, body {
     padding-left: 10px;
     margin-left: 40px;
     margin-right: 10px;
-
     border: none;
     border-radius: 5px;
     font-size: 15px;
 }
 
 /* task display */
-
-
 .taskDisplay {
-    display:flex;
-    width: 100%;
-    justify-content: center;
-    align-content: flex-start;
-    flex-wrap: wrap; 
-    background: white;
+    display: flex;
+    flex-wrap: wrap;
     
 }
 
 .taskDiv {
-    flex-grow: auto 1;
+  
     border: 5px solid black;
     width: 200px;
     margin: 20px;
-    background-color: orange;
+    background-color: white;
     padding: 15px;
 }
 

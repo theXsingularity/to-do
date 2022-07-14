@@ -1,4 +1,4 @@
-import { taskDisplay } from "./index";
+import { createTaskDisplay } from "./layout";
 
 console.log('reading display library')
 
@@ -19,6 +19,7 @@ class Task {
   const task2 = new Task("write letter", "its almost a month past her birthday", 'tomorrow', "high");
   const task3 = new Task("take out trash", "so quick!", 'tomorrow', "high");
   const task4 = new Task("finish coding", "you can do it", 'tomorrow', "medium");
+ 
   myTasks.push(task1)
   myTasks.push(task2)
   myTasks.push(task3)
