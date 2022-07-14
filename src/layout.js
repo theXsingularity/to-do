@@ -1,3 +1,6 @@
+import { on } from "./formOverlay"
+
+
 //HEADER FUNCTION
 function createHeader() {
     const header = document.createElement('div')
@@ -8,18 +11,20 @@ function createHeader() {
 
     const searchLabel = document.createElement('div')
     searchLabel.classList.add('searchLabel')
-    searchLabel.innerHTML = 'SEARCH'
+    searchLabel.innerHTML = ''
 
     const search = document.createElement('input')
     search.classList.add('search')
 
     const title = document.createElement('div')
     title.classList.add('title')
-    title.innerHTML = 'TO-DO'
+    title.innerHTML = ''
 
     const addTask = document.createElement('button')
     addTask.classList.add('addTask')
     addTask.innerHTML = '+'
+
+    addTask.addEventListener('click', on)
 
     header.appendChild(searchContainer)
         searchContainer.appendChild(searchLabel)
@@ -39,22 +44,22 @@ function createHeader() {
     const inbox = document.createElement('button');
     inbox.classList.add('inbox');
     inbox.classList.add('menuItem');
-    inbox.innerHTML='INBOX'
+    inbox.innerHTML='Inbox'
 
     const today = document.createElement('button');
     today.classList.add('today');
     today.classList.add('menuItem');
-    today.innerHTML='TODAY'
+    today.innerHTML='Today'
 
     const upcoming = document.createElement('button');
     upcoming.classList.add('upcoming');
     upcoming.classList.add('menuItem');
-    upcoming.innerHTML='UPCOMING'
+    upcoming.innerHTML='Upcoming'
 
     const projects = document.createElement('button');
     projects.classList.add('projects');
     projects.classList.add('menuItem');
-    projects.innerHTML='PROJECTS'
+    projects.innerHTML='Projects'
 
     sidebar.appendChild(inbox)
     sidebar.appendChild(today)

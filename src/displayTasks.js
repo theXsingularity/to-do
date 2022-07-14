@@ -1,10 +1,8 @@
-
 import { taskDisplay } from "./index";
+
 console.log('reading display library')
 
 let myTasks = [];
-
-
 //the constructor for creating "tasks"
 class Task {
   constructor(title, description, dueDate, priority) {
@@ -12,6 +10,7 @@ class Task {
     this.description = description
     this.dueDate = dueDate
     this.priority = priority
+    this.displayed = false
   }
   }
 
@@ -41,25 +40,31 @@ taskDiv.appendChild(priorityOutput);
 
 // displays array object by creating new DOM elements
 function displayTasks() {
-  
   for (let i=0; i<myTasks.length; i++) {
-    titleOutput.innerText = `Title: ${myTasks[i].title}`
-    descriptionOutput.innerText = `Description: ${myTasks[i].descriptionOutput}`;
-    dueDateOutput.innerText = `Due Date: ${myTasks[i].dueDate} pages`;
-    priorityOutput.innerText = `Priority: ${myTasks[i].priority} pages`;
-  
-    //append DOM elements
-    taskDisplay.appendChild(taskDiv.cloneNode(true));
-    taskDiv.appendChild(titleOutput);
-    taskDiv.appendChild(descriptionOutput);
-    taskDiv.appendChild(dueDateOutput);
-    taskDiv.appendChild(priorityOutput);
-
-  } 
+    if(myTasks[i].displayed === false) {
+      titleOutput.innerText = `Title: ${myTasks[i].title}`
+      descriptionOutput.innerText = `Description: ${myTasks[i].descriptionOutput}`;
+      dueDateOutput.innerText = `Due Date: ${myTasks[i].dueDate}`;
+      priorityOutput.innerText = `Priority: ${myTasks[i].priority}`;
+      if (myTasks[i].read === false) {
+        readOutput.innerText = ('Status: to Read')
+      } else if (myTasks[i].read === true) {
+        readOutput.innerText = ('Status: Read')
+      }
+      //append DOM elements
+      taskDisplay.appendChild(taskDiv.cloneNode(true));
+      taskDiv.appendChild(titleOutput);
+      taskDiv.appendChild(descriptionOutput);
+      taskDiv.appendChild(dueDateOutput);
+      taskDiv.appendChild(priorityOutput);
+      //now that it has been displayed - change displayed to true
+      myTasks[i].displayed = true;
+    } 
   }
+}
 
 
 
 
 
-export {displayTasks}
+export {myTasks, Task, displayTasks}

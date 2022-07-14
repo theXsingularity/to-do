@@ -10,7 +10,7 @@ html, body {
 #content {
     display: flex;
     flex-direction: column;
-    background: hotpink;
+    background: red;
     height: 100%;
 }
 
@@ -21,13 +21,14 @@ html, body {
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    background-color: indianred;
-    font-size: 30px;
+    background-color: #db4c3f;
+    height: 30px;
     
 }
 
 .searchContainer{
     display: flex;
+    padding-left: 40px;
     
 }
 
@@ -45,6 +46,12 @@ html, body {
 .addTask {
     min-width: 25px;
     min-height: 25px;
+    margin-right: 25px;
+    padding-left: 8px;
+    padding-right: 8px;
+    color:white;
+    font-size: 25px;
+    
     
 }
 
@@ -60,18 +67,36 @@ html, body {
     display:flex;
     flex-direction: column;
     text-align: center;
-    max-width:  100px;
-    min-width:  100px;
+    max-width:  300px;
+    min-width:  300px;
     padding-top: 20px;
-    background-color: tan;
-    
+    background-color: #fafafa;
+}
+
+.today, .upcoming, .projects {
+    background-color: #fafafa;
+}
+
+.inbox {
+    background-color: #eeeeee;
+}
+
+.projects {
+    font-weight: bold;
 }
 
 
+
 .menuItem{
-    margin-bottom: 10px;
-    background: none;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    margin-left: 40px;
+    margin-right: 10px;
+
     border: none;
+    border-radius: 5px;
     font-size: 15px;
 }
 
@@ -81,19 +106,49 @@ html, body {
 .taskDisplay {
     display:flex;
     width: 100%;
-
     justify-content: center;
     align-content: flex-start;
     flex-wrap: wrap; 
-    background: lightskyblue;
+    background: white;
     
 }
 
 .taskDiv {
     flex-grow: auto 1;
-    border: 10px solid black;
+    border: 5px solid black;
     width: 200px;
     margin: 20px;
-    background-color: lightsteelblue;
+    background-color: orange;
     padding: 15px;
 }
+
+
+/* overlay */
+#formOverlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left:0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+
+.displayContainer{
+    display: flex;
+    justify-content: center;
+    padding-top: 70px;
+  
+      }
+
+.taskForm {
+    width: 300px;
+    height: 500px;
+    border: 10px solid black;
+    background-color: coral;
+}
+

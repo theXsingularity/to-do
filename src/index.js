@@ -1,5 +1,5 @@
 import {displayTasks} from './displayTasks';
-import {createHeader, createSidebar} from './domStuff'
+import {createHeader, createSidebar} from './layout'
 import './style.css';
 
 /* ----- header ----- */
