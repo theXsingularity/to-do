@@ -81,8 +81,8 @@ addTaskBtn.innerHTML = "ADD"
 formOverlay.appendChild(displayContainer);
     displayContainer.appendChild(taskForm)
         taskForm.appendChild(formHeader);
-            formHeader.appendChild(exitButton);
             formHeader.appendChild(formTitle);
+            formHeader.appendChild(exitButton);
         taskForm.appendChild(taskTitleContainer);
             taskTitleContainer.appendChild(taskTitleLabel);
             taskTitleContainer.appendChild(taskTitleInput)
@@ -107,11 +107,12 @@ function addTaskToList() {
     priorityInput.value = '';
     displayTasks();
     off();
+    console.log(myTasks)
   };
 
 content.appendChild(formOverlay)
 
-
+addTaskBtn.addEventListener('click', addTaskToList)
     
   /* for overlay form*/
 function on() {

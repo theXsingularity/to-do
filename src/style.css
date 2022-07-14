@@ -46,11 +46,10 @@ html, body {
 
 /* ----- main content ----- */
 .contentContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
     width: auto;
     height: 100%; 
-    background-color: orange;
+    background-color: white;
 }
 
 /* sidebar */
@@ -89,16 +88,21 @@ html, body {
 }
 
 /* task display */
-.taskDisplay {
+#taskDisplay {
     display: flex;
+    width: 100%;
+    justify-content: center;
+    align-content: flex-start;
     flex-wrap: wrap;
+    background-color: white;
     
 }
 
 .taskDiv {
-  
+    flex-grow: auto 1;
     border: 5px solid black;
     width: 200px;
+    height: ;
     margin: 20px;
     background-color: white;
     padding: 15px;
