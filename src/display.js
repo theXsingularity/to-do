@@ -24,18 +24,18 @@ inbox.push(task3)
 inbox.push(task4)}
 
 //creating new DOM elements for displaying "tasks" 
-{let taskDiv = document.createElement('div');
+let taskDiv = document.createElement('div');
 taskDiv.classList.add('taskDiv')
 let titleOutput = document.createElement('div');
 let descriptionOutput = document.createElement('div');
 let dueDateOutput = document.createElement('div');
-let priorityOutput = document.createElement('div');}
+let priorityOutput = document.createElement('div');
 
 //appending elements to task display DOM element 
-{taskDiv.appendChild(titleOutput);
+taskDiv.appendChild(titleOutput);
 taskDiv.appendChild(descriptionOutput);
 taskDiv.appendChild(dueDateOutput);
-taskDiv.appendChild(priorityOutput);}
+taskDiv.appendChild(priorityOutput);
 
 // displays array object by creating new DOM elements
 function displayTasks() {
@@ -79,26 +79,33 @@ const Project = {
   myProjects: [],
   currentProject: inbox,
   addNewProject: function() {
-      let project = prompt("whats your project?")
-      let projectObject = {project}
+    //prompt, name project, turn tring to object, give displayed property, push to array
+      let projectName = prompt("whats your project?");
+      let projectObject = {projectName};
       projectObject.displayed = false;
-      Project.myProjects.push(project)
+      projectObject['data-attribite'] = Project.myProjects.length + 1;
+      Project.myProjects.push(projectObject);
+      
+    //create project buttons to populate page
       let projectItem = document.createElement('button')
       projectItem.classList.add('projectItem')
-      projectItem.innerHTML = project
+      projectItem.innerHTML = projectName
       listOfProjects.appendChild(projectItem)
       Project.linkProjects();
   },
   linkProjects: function() {
-    console.log(Project.myProjects.displayed)
     const projectLinks = document.getElementsByClassName('projectItem')
-    for( let i=0; i<projectLinks.length; i++) {
-   
-      if(Project.myProjects[i].displayed !== true) {
+    for(let i=0; i<projectLinks.length; i++) {
+      console.log(Project.myProjects[0].displayed)
+      if(Project.myProjects[i].displayed === false) {
         projectLinks[i].addEventListener('click', function(){
             Project.currentProject = Project.myProjects[i];
-            projectLinks[i].displayed === true
-            console.log(Project.myProjects[i])
+            Project.myProjects[i].displayed = true
+            console.log(Project.myProjects)
+            console.log(Project.myProjects[0].displayed)
+            console.log(`clicked on ... ${Project.myProjects[i].projectName}`)
+            //console.log(`Current Project ${Project.currentProject}`)
+            //console.log(Project.myProjects[i]['data-attribute'])
             
             
         })
