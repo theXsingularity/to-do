@@ -1,11 +1,10 @@
-import { displayTasks } from './displayTasks';
-import { formOverlay } from './formOverlay';
-import { createHeader, mainContent } from './layout';
+import { displayTasks } from './display';
+import { Form, createHeader, mainContent } from './DOM-stuff';
 import './style.css';
 
 content.appendChild(createHeader()) 
 content.appendChild(mainContent())
-content.appendChild(formOverlay)
+content.appendChild(Form.createForm())
 displayTasks();
 
 
