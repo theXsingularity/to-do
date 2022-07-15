@@ -1,4 +1,4 @@
-import { Form } from "./DOM-stuff";
+import { Form, newProgram} from "./DOM-stuff";
 
 const inbox = [];
 
@@ -10,18 +10,19 @@ class Task {
     this.dueDate = dueDate
     this.priority = priority
     this.displayed = false
+    this.rmvBtnTog = false
   }
 }
 
 //example tasks and adding to inbox
-{const task1 = new Task("Laundry", "small load - but need underwear", 'tomorrow', "high");
+const task1 = new Task("Laundry", "small load - but need underwear", 'tomorrow', "high");
 const task2 = new Task("write letter", "its almost a month past her birthday", 'tomorrow', "high");
 const task3 = new Task("take out trash", "so quick!", 'tomorrow', "high");
 const task4 = new Task("finish coding", "you can do it", 'tomorrow', "medium");
 inbox.push(task1)
 inbox.push(task2)
 inbox.push(task3)
-inbox.push(task4)}
+inbox.push(task4)
 
 //creating new DOM elements for displaying "tasks" 
 let taskDiv = document.createElement('div');
@@ -46,11 +47,6 @@ function displayTasks() {
       descriptionOutput.innerText = `Description: ${inbox[i].description}`;
       dueDateOutput.innerText = `Due Date: ${inbox[i].dueDate}`;
       priorityOutput.innerText = `Priority: ${inbox[i].priority}`;
-      if (inbox[i].read === false) {
-        readOutput.innerText = ('Status: to Read')
-      } else if (inbox[i].read === true) {
-        readOutput.innerText = ('Status: Read')
-      }
       //append DOM elements
       taskDisplay.appendChild(taskDiv.cloneNode(true));
       taskDiv.appendChild(titleOutput);
@@ -59,6 +55,7 @@ function displayTasks() {
       taskDiv.appendChild(priorityOutput);
       //now that it has been displayed - change displayed to true
       inbox[i].displayed = true;
+      inbox[i].rmvBtnTog = false;
     } 
   }
 }
@@ -83,35 +80,58 @@ const Project = {
       let projectName = prompt("whats your project?");
       let projectObject = {projectName};
       projectObject.displayed = false;
-      projectObject['data-attribite'] = Project.myProjects.length + 1;
+      projectObject.rmvBtnTog = false;
+      projectObject['data-attribute'] = Project.myProjects.length + 1;
       Project.myProjects.push(projectObject);
       
     //create project buttons to populate page
+      let projectItemContainer = document.createElement('div')
+      projectItemContainer.classList.add('projectItemContainer')
       let projectItem = document.createElement('button')
       projectItem.classList.add('projectItem')
+      let projectRmvBtn = document.createElement('button')
+      projectRmvBtn.innerHTML = '-'
+      projectRmvBtn.classList.add('projectRmvBtn')
       projectItem.innerHTML = projectName
-      listOfProjects.appendChild(projectItem)
+      listOfProjects.appendChild(projectItemContainer)
+      projectItemContainer.appendChild(projectItem)
+      projectItemContainer.appendChild(projectRmvBtn)
+      console.log()
+      //projectItem.['data-attribute'] = Project.myProjects.length + 1;
       Project.linkProjects();
+      Project.removeProject();
   },
   linkProjects: function() {
     const projectLinks = document.getElementsByClassName('projectItem')
     for(let i=0; i<projectLinks.length; i++) {
-      console.log(Project.myProjects[0].displayed)
       if(Project.myProjects[i].displayed === false) {
+        Project.myProjects[i].displayed = true;
         projectLinks[i].addEventListener('click', function(){
             Project.currentProject = Project.myProjects[i];
-            Project.myProjects[i].displayed = true
-            console.log(Project.myProjects)
-            console.log(Project.myProjects[0].displayed)
             console.log(`clicked on ... ${Project.myProjects[i].projectName}`)
-            //console.log(`Current Project ${Project.currentProject}`)
-            //console.log(Project.myProjects[i]['data-attribute'])
-            
-            
+            console.log(`Current Project `);
+            console.log(Project.currentProject)
+            console.log(Project.myProjects[i]['data-attribute'])
         })
-      } else{console.log('hello')}
+      }
+    }
+    
+  },
+  removeProject: function() {
+    const rmvProjectBtns = document.getElementsByClassName('projectRmvBtn')
+    for(let i=0; i<rmvProjectBtns.length; i++) {
+      if(Project.myProjects[i].rmvBtnTog === false) {
+        Project.myProjects[i].rmvBtnTog = true;
+        rmvProjectBtns[i].addEventListener('click', function(){
+            Project.myProjects.splice(i,1); //works
+            listOfProjects.removeChild(listOfProjects.children[i])
+            console.log(Project.myProjects)
+            
+        }
+      )}
     }
   }
+
 }
 
 

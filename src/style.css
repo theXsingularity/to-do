@@ -17,7 +17,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    background-color: gold;
+    background-color: #db4c3f;
     height: 30px;
 }
 
@@ -75,6 +75,11 @@ html, body {
     font-weight: bold;
 }
 
+.addProjectBtn {
+    background:none;
+    border: none;
+    font-size: 20px;;
+}
 .projectsListItem {
     display: flex;
     justify-content: space-between;
@@ -82,7 +87,20 @@ html, body {
 
 #listOfProjects {
     display:grid;
-    justify-content: left;
+    width: 99%;
+    
+   
+}
+
+.projectItemContainer {
+    display:flex;
+    justify-content: space-between;
+}
+
+.projectRmvBtn {
+    background:none;
+    border: none;
+    font-size: 20px;;
 }
 
 .projectItem {

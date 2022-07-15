@@ -206,8 +206,7 @@ const Form = {
   return formOverlay
   },
   on() {
-    console.log('testing')
-    console.log(formOverlay)
+    
     formOverlay.style.display = "block";
   },
   off() {
@@ -215,8 +214,6 @@ const Form = {
   } 
 }
 
-
 /* ----- project stuff ----- */
-
 
 export { createHeader, mainContent, Form }
