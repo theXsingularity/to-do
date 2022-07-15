@@ -129,9 +129,10 @@ const Form = {
     formTitle.classList.add('formTitle');
     formTitle.innerHTML ='Input Task Below';
 
-
+    const formContainer = document.createElement('div')
+    formContainer.classList.add('formConatiner');
     const taskTitleContainer = document.createElement('div');
-    taskTitleContainer.classList.add('taskTitleContainer');
+    taskTitleContainer.classList.add('taskTitleContainer', 'formItem');
 
     const taskTitleLabel = document.createElement('label');
     taskTitleLabel.classList.add('taskTitleLabel');
@@ -143,7 +144,7 @@ const Form = {
     taskTitleInput.setAttribute('type', 'text');
 
     const descriptionContainer = document.createElement('div');
-    descriptionContainer.classList.add('descriptionContainer');
+    descriptionContainer.classList.add('descriptionContainer', 'formItem');
 
     const descriptionLabel = document.createElement('label');
     descriptionLabel.classList.add('descriptionLabel');
@@ -155,7 +156,7 @@ const Form = {
     descriptionInput.setAttribute('type', 'text');
 
     const dueContainer = document.createElement('div');
-    dueContainer.classList.add('dueContainer');
+    dueContainer.classList.add('dueContainer', 'formItem');
 
     const dueLabel = document.createElement('label');
     dueLabel.classList.add('dueLabel');
@@ -167,7 +168,7 @@ const Form = {
     dueInput.setAttribute('type', 'text');
 
     const priorityContainer = document.createElement('div');
-    priorityContainer.classList.add('priorityContainer');
+    priorityContainer.classList.add('priorityContainer', 'formItem');
 
     const priorityLabel = document.createElement('label');
     priorityLabel.classList.add('priorityLabel');
@@ -177,6 +178,9 @@ const Form = {
     const priorityInput = document.createElement('input');
     priorityInput.setAttribute('id','priorityInput');
     priorityInput.setAttribute('type', 'text');
+    
+    const addTaskBtnContainer = document.createElement('div');
+    addTaskBtnContainer.classList.add('addTaskBtnContainer', 'formItem');
 
     const addTaskBtn = document.createElement('button');
     addTaskBtn.classList.add('addTaskBtn');
@@ -189,19 +193,21 @@ const Form = {
             taskForm.appendChild(formHeader);
                 formHeader.appendChild(formTitle);
                 formHeader.appendChild(exitButton);
-            taskForm.appendChild(taskTitleContainer);
+            taskForm.appendChild(formContainer);
+              formContainer.appendChild(taskTitleContainer)
                 taskTitleContainer.appendChild(taskTitleLabel);
                 taskTitleContainer.appendChild(taskTitleInput)
-            taskForm.appendChild(descriptionContainer);
+              formContainer.appendChild(descriptionContainer);
                 descriptionContainer.appendChild(descriptionLabel);
                 descriptionContainer.appendChild(descriptionInput);
-            taskForm.appendChild(dueContainer);
+              formContainer.appendChild(dueContainer);
                 dueContainer.appendChild(dueLabel);
                 dueContainer.appendChild(dueInput);
-            taskForm.appendChild(priorityContainer);
+              formContainer.appendChild(priorityContainer);
                 priorityContainer.appendChild(priorityLabel);
-                dueContainer.appendChild(priorityInput);
-            taskForm.appendChild(addTaskBtn);}
+                priorityContainer.appendChild(priorityInput);
+              formContainer.appendChild(addTaskBtnContainer);
+                addTaskBtnContainer.appendChild(addTaskBtn);}
 
   return formOverlay
   },
