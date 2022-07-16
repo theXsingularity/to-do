@@ -6,5 +6,7 @@ content.appendChild(createHeader())
 content.appendChild(mainContent())
 content.appendChild(Form.createForm())
 displayTasks();
+let searchBar = document.getElementById('search')
+console.log(searchBar)
 
 

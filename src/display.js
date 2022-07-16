@@ -60,6 +60,7 @@ function displayTasks() {
   }
 }
 
+// ---- form functionality --- 
 function addTaskToList() {
   let newTask = new Task(taskTitleInput.value, descriptionInput.value, dueInput.value, priorityInput.value)
   inbox.push(newTask)
@@ -70,8 +71,10 @@ function addTaskToList() {
   displayTasks();
   Form.off();
   console.log(inbox)
+  
 };
 
+// ----- Project Object
 const Project = {
   myProjects: [],
   currentProject: inbox,
@@ -100,6 +103,7 @@ const Project = {
       //projectItem.['data-attribute'] = Project.myProjects.length + 1;
       Project.linkProjects();
       Project.removeProject();
+      console.log(Project.myProjects)
   },
   linkProjects: function() {
     const projectLinks = document.getElementsByClassName('projectItem')
@@ -126,12 +130,10 @@ const Project = {
             Project.myProjects.splice(i,1); //works
             listOfProjects.removeChild(listOfProjects.children[i])
             console.log(Project.myProjects)
-            
         }
       )}
     }
   }
-
 }
 
 
