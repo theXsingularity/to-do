@@ -1,4 +1,4 @@
-import { Form, newProgram} from "./DOM-stuff";
+import { Form} from "./layout";
 
 const inbox = [];
 
@@ -74,68 +74,4 @@ function addTaskToList() {
   
 };
 
-// ----- Project Object
-const Project = {
-  myProjects: [],
-  currentProject: inbox,
-  addNewProject: function() {
-    //prompt, name project, turn tring to object, give displayed property, push to array
-      let projectName = prompt("whats your project?");
-      let projectObject = {projectName};
-      projectObject.displayed = false;
-      projectObject.rmvBtnTog = false;
-      projectObject['data-attribute'] = Project.myProjects.length + 1;
-      Project.myProjects.push(projectObject);
-      
-    //create project buttons to populate page
-      let projectItemContainer = document.createElement('div')
-      projectItemContainer.classList.add('projectItemContainer')
-      let projectItem = document.createElement('button')
-      projectItem.classList.add('projectItem')
-      let projectRmvBtn = document.createElement('button')
-      projectRmvBtn.innerHTML = '-'
-      projectRmvBtn.classList.add('projectRmvBtn')
-      projectItem.innerHTML = projectName
-      listOfProjects.appendChild(projectItemContainer)
-      projectItemContainer.appendChild(projectItem)
-      projectItemContainer.appendChild(projectRmvBtn)
-      console.log()
-      //projectItem.['data-attribute'] = Project.myProjects.length + 1;
-      Project.linkProjects();
-      Project.removeProject();
-      console.log(Project.myProjects)
-  },
-  linkProjects: function() {
-    const projectLinks = document.getElementsByClassName('projectItem')
-    for(let i=0; i<projectLinks.length; i++) {
-      if(Project.myProjects[i].displayed === false) {
-        Project.myProjects[i].displayed = true;
-        projectLinks[i].addEventListener('click', function(){
-            Project.currentProject = Project.myProjects[i];
-            console.log(`clicked on ... ${Project.myProjects[i].projectName}`)
-            console.log(`Current Project `);
-            console.log(Project.currentProject)
-            console.log(Project.myProjects[i]['data-attribute'])
-        })
-      }
-    }
-    
-  },
-  removeProject: function() {
-    const rmvProjectBtns = document.getElementsByClassName('projectRmvBtn')
-    for(let i=0; i<rmvProjectBtns.length; i++) {
-      if(Project.myProjects[i].rmvBtnTog === false) {
-        Project.myProjects[i].rmvBtnTog = true;
-        rmvProjectBtns[i].addEventListener('click', function(){
-            Project.myProjects.splice(i,1); //works
-            listOfProjects.removeChild(listOfProjects.children[i])
-            console.log(Project.myProjects)
-        }
-      )}
-    }
-  }
-}
-
-
-
-export { inbox, Task, displayTasks, addTaskToList, Project }
+export { inbox, Task, displayTasks, addTaskToList,  }

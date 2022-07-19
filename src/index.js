@@ -1,12 +1,11 @@
 import { displayTasks } from './display';
-import { Form, createHeader, mainContent } from './DOM-stuff';
+import { Form, DOM } from './layout';
 import './style.css';
 
-content.appendChild(createHeader()) 
-content.appendChild(mainContent())
+content.appendChild(DOM.header()) 
+content.appendChild(DOM.mainContent())
 content.appendChild(Form.createForm())
 displayTasks();
 let searchBar = document.getElementById('search')
-console.log(searchBar)
 
 
