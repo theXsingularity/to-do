@@ -1,4 +1,16 @@
-class Task {
+import { projectStuff } from './projects'
+
+
+
+
+console.log(projectStuff.currentProject)
+
+
+
+
+
+
+/* class Task {
   constructor(title, description, dueDate, priority) {
     this.title = title
     this.description = description
@@ -17,4 +29,7 @@ inbox.push(task1)
 inbox.push(task2)
 inbox.push(task3)
 inbox.push(task4)
+
+
+ */
 

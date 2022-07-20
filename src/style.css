@@ -18,7 +18,7 @@ html, body {
     justify-content: space-between;
     align-items: center;
     padding: 5px;
-    background-color: gold;
+    background-color: red;
     height: 30px;
 }
 
@@ -84,7 +84,7 @@ html, body {
     border: none;
     font-size: 20px;;
 }
-.projectsListItem {
+.projectHeader {
     display: flex;
     justify-content: space-between;
 }
@@ -96,7 +96,7 @@ html, body {
    
 }
 
-.projectItemContainer {
+.projectListContainer {
     display:flex;
     justify-content: space-between;
 }

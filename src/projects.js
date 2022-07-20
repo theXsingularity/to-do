@@ -1,25 +1,45 @@
 import{ DOM } from './DOM'
 
-const myProjects = []
 
+//project factory
 class Project {
-    constructor(name) {
-      this.name = name
-      this.displayed = false
-      this.rmvBtnTog = false
-    }
+  constructor(name) {
+    this.name = name
+    this.displayed = false
+    this.rmvBtnTog = false
   }
-  
-const inbox = new Project('inbox')
-//myProjects.push(inbox)
-inbox.displayed = true
+}
 
-let currentProject = myProjects[0]
+
+//creating inbox
+
+
+
+
+const projectStuff = {
+  myProjects: [],
+  currentProject: '',
+  createInbox: function() {
+    const inbox = new Project('inbox')
+    projectStuff.myProjects.push(inbox)
+    inbox.displayed = true
+    projectStuff.changeProject(inbox)
+  },
+  changeProject: function(item) {
+    projectStuff.currentProject = item
+    console.log(projectStuff.currentProject)
+    console.log('ran changeProject()')
+  }
+}
+projectStuff.createInbox(); // how to make this into self-invoking function?
+
+
+
 
 
 function addNewProject () {
     let project = new Project(prompt('whats your project?'))
-    myProjects.push(project);
+    projectStuff.myProjects.push(project);
     
     DOM.appendProject()
     DOM.addProjLinks()
@@ -27,6 +47,5 @@ function addNewProject () {
 }
 
 
-
-export {addNewProject, myProjects, currentProject}
+export {addNewProject, projectStuff}
 

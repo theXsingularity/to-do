@@ -1,4 +1,6 @@
-import { Form} from "./layout";
+import { Form } from './DOM'
+
+
 
 const inbox = [];
 
