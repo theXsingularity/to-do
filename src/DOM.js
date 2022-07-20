@@ -17,10 +17,14 @@ const DOM = {
         projectRmvBtn.classList.add('projectRmvBtn')
         projectRmvBtn.setAttribute("data-rmvBtn", (myProjects.length-1))
         
-        
         listOfProjects.appendChild(projectItemContainer)
         projectItemContainer.appendChild(projectItem)
         projectItemContainer.appendChild(projectRmvBtn)
+
+        let ddItem = document.createElement('option')
+        ddItem.innerHTML = (myProjects[newProject].name)
+
+        myList.appendChild(ddItem)
         
     },
     test: function() {
@@ -51,24 +55,16 @@ const DOM = {
         })
     }
 }
-        //const rmvProjectBtns = document.getElementsByClassName('projectRmvBtn')
-       /*  for(let i=0; i<myProjects.length; i++) {
-            if(myProjects[i].rmvBtnTog === false) {
-              myProjects[i].rmvBtnTog = true;
-              rmvProjectBtns[i].addEventListener('click', function(){
-                let test = document.querySelector(`[data-attribute="${i}"]`)
-                myProjects.splice(i,1); //works
-                console.log(test.parentNode)
-                console.log(listOfProjects)
-                console.log(this.parentNode)
-                listOfProjects.removeChild(test.parentNode) */
-                /* 
-                  listOfProjects.removeChild(this.parentNode)
-                  console.log(myProjects)
-                  console.log(rmvProjectBtns) */
+
+function ddChange() {
+    let mylist = document.getElementById("myList"); 
+    let ddInput = document.getElementById('projectDDItems')
+    ddInput.value = mylist.options[myList.selectedIndex].innerHTML;  
+  }
+
               
         
         
 
 
-export { DOM }
+export { DOM, ddChange}

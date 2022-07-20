@@ -1,5 +1,6 @@
-import { addTaskToList, Project } from "./display";
-import { addNewProject } from "./projects"
+import { addTaskToList, Project,  } from "./display";
+import { addNewProject,} from "./projects"
+import { ddChange } from "./DOM";
 
 // ----- HEADER ----- */
 
@@ -133,7 +134,26 @@ const DOM = {
       formContainer.classList.add('formConatiner');
       const taskTitleContainer = document.createElement('div');
       taskTitleContainer.classList.add('taskTitleContainer', 'formItem');
+
+      const ddContainer = document.createElement('div')
+      ddContainer.classList.add('ddContainer')
+
+      const myList = document.createElement('select')
+      myList.setAttribute('id', 'myList')
+      myList.addEventListener('click', ddChange)
+
+   
+
+
+      const ddInput = document.createElement('input')
+      ddInput.setAttribute('type', 'text')
+      ddInput.setAttribute('id', 'projectDDItems')
+
+     
+
   
+
+
       const taskTitleLabel = document.createElement('label');
       taskTitleLabel.classList.add('taskTitleLabel');
       taskTitleLabel.setAttribute('for', 'taskTitleInput');
@@ -194,6 +214,9 @@ const DOM = {
                   formHeader.appendChild(formTitle);
                   formHeader.appendChild(exitButton);
               taskForm.appendChild(formContainer);
+              formContainer.appendChild(ddContainer)
+                ddContainer.appendChild(myList)
+                ddContainer.appendChild(ddInput)
                 formContainer.appendChild(taskTitleContainer)
                   taskTitleContainer.appendChild(taskTitleLabel);
                   taskTitleContainer.appendChild(taskTitleInput)

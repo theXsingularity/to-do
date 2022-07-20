@@ -26,5 +26,7 @@ function addNewProject () {
     DOM.rmvProjItems()
 }
 
+
+
 export {addNewProject, myProjects, currentProject}
 
