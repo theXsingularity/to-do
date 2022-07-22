@@ -1,8 +1,7 @@
 import { Form } from './DOM'
+import { projectStuff } from './projects';
 
 
-
-const inbox = [];
 
 //the constructor for creating "tasks"
 class Task {
@@ -21,10 +20,12 @@ const task1 = new Task("Laundry", "small load - but need underwear", 'tomorrow',
 const task2 = new Task("write letter", "its almost a month past her birthday", 'tomorrow', "high");
 const task3 = new Task("take out trash", "so quick!", 'tomorrow', "high");
 const task4 = new Task("finish coding", "you can do it", 'tomorrow', "medium");
-inbox.push(task1)
-inbox.push(task2)
-inbox.push(task3)
-inbox.push(task4)
+projectStuff.currentProject.tasks.push(task1)
+projectStuff.currentProject.tasks.push(task2)
+projectStuff.currentProject.tasks.push(task3)
+projectStuff.currentProject.tasks.push(task4)
+
+
 
 //creating new DOM elements for displaying "tasks" 
 let taskDiv = document.createElement('div');
@@ -33,31 +34,37 @@ let titleOutput = document.createElement('div');
 let descriptionOutput = document.createElement('div');
 let dueDateOutput = document.createElement('div');
 let priorityOutput = document.createElement('div');
+let projOutput = document.createElement('div');
 
 //appending elements to task display DOM element 
 taskDiv.appendChild(titleOutput);
 taskDiv.appendChild(descriptionOutput);
 taskDiv.appendChild(dueDateOutput);
 taskDiv.appendChild(priorityOutput);
+taskDiv.appendChild(projOutput);
 
 // displays array object by creating new DOM elements
 function displayTasks() {
-  for (let i=0; i<inbox.length; i++) {
+  console.log('ran displayTasks 1')
+  for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
+    console.log('ran displayTasks 2')
     //check if displayed
-    if(inbox[i].displayed === false) {
-      titleOutput.innerText = `Title: ${inbox[i].title}`
-      descriptionOutput.innerText = `Description: ${inbox[i].description}`;
-      dueDateOutput.innerText = `Due Date: ${inbox[i].dueDate}`;
-      priorityOutput.innerText = `Priority: ${inbox[i].priority}`;
+    if(projectStuff.currentProject.tasks[i].displayed === false) {
+      titleOutput.innerText = `Title: ${projectStuff.currentProject.tasks[i].title}`
+      descriptionOutput.innerText = `Description: ${projectStuff.currentProject.tasks[i].description}`;
+      dueDateOutput.innerText = `Due Date: ${projectStuff.currentProject.tasks[i].dueDate}`;
+      priorityOutput.innerText = `Priority: ${projectStuff.currentProject.tasks[i].priority}`;
       //append DOM elements
       taskDisplay.appendChild(taskDiv.cloneNode(true));
       taskDiv.appendChild(titleOutput);
       taskDiv.appendChild(descriptionOutput);
       taskDiv.appendChild(dueDateOutput);
       taskDiv.appendChild(priorityOutput);
+      taskDiv.appendChild(projOutput);
       //now that it has been displayed - change displayed to true
-      inbox[i].displayed = true;
-      inbox[i].rmvBtnTog = false;
+      projectStuff.currentProject.tasks[i].displayed = true;
+      projectStuff.currentProject.tasks[i].rmvBtnTog = false;
+      
     } 
   }
 }
@@ -65,15 +72,16 @@ function displayTasks() {
 // ---- form functionality --- 
 function addTaskToList() {
   let newTask = new Task(taskTitleInput.value, descriptionInput.value, dueInput.value, priorityInput.value)
-  inbox.push(newTask)
+
+  projectStuff.currentProject.tasks.push(newTask)
   taskTitleInput.value= '';
   descriptionInput.value = '';
   dueInput.value = '';
   priorityInput.value = '';
   displayTasks();
   Form.off();
-  console.log(inbox)
+  console.log(projectStuff.currentProject)
   
 };
 
-export { inbox, Task, displayTasks, addTaskToList,  }
+export { Task, displayTasks, addTaskToList,  }

@@ -1,8 +1,5 @@
-import { addNewProject, projectStuff } from './projects'
-import { addTaskToList } from "./display";
-
-
-
+import { projectStuff } from './projects'
+import { addTaskToList, displayTasks, inbox } from "./display";
 
 const DOM = {
 //--- LAYOUT
@@ -44,15 +41,24 @@ const DOM = {
     const sidebar = document.createElement('div')
     sidebar.classList.add('sidebar')
     
-    const inbox = document.createElement('div');
-    inbox.classList.add('inbox');
-    inbox.classList.add('menuItem');
-    inbox.innerHTML='Inbox'
-    
+    const inboxBtn = document.createElement('button');
+    inboxBtn.classList.add('inbox');
+    inboxBtn.classList.add('menuItem');
+    inboxBtn.innerHTML='Inbox'
+    inboxBtn.addEventListener('click', event => {
+      projectStuff.changeCurrentProject(projectStuff.myProjects[0]) 
+      console.log('current project:')
+      console.log(projectStuff.currentProject)
+  })
+
+
     const today = document.createElement('div');
     today.classList.add('today');
     today.classList.add('menuItem');
     today.innerHTML='Today'
+
+
+    
     
     const upcoming = document.createElement('div');
     upcoming.classList.add('upcoming');
@@ -74,13 +80,14 @@ const DOM = {
     addProjectBtn.classList.add('addProjectBtn')
     addProjectBtn.innerHTML = "+"
     
-    addProjectBtn.addEventListener('click', addNewProject)
+    addProjectBtn.addEventListener('click', projectStuff.addNewProject)
     
     const listOfProjects = document.createElement('div')
     listOfProjects.setAttribute('id','listOfProjects')
     
-    sidebar.appendChild(inbox)
+    sidebar.appendChild(inboxBtn)
     sidebar.appendChild(today)
+    
     sidebar.appendChild(upcoming)
     sidebar.appendChild(projectsContainer)
         projectsContainer.appendChild(projectHeader)
@@ -105,64 +112,53 @@ const DOM = {
     },
 //--- PROJECT STUFF
     appendProject: function() {
-        let newProject = projectStuff.myProjects.length-1
+        //let newProject = projectStuff.myProjects.length-1
         let projectListContainer = document.createElement('div')
         projectListContainer.classList.add('projectListContainer')
-
+        //add list button
         let projectItem = document.createElement('button')
         projectItem.classList.add('projectItem')
-        projectItem.innerHTML = (projectStuff.myProjects[newProject].name)
+        projectItem.innerHTML = (projectStuff.myProjects[projectStuff.myProjects.length-1].name)
         projectItem.setAttribute("data-projLink", (projectStuff.myProjects.length-1))
-        
-
+        projectItem.addEventListener('click', event => {
+          let attribute = event.target.getAttribute('data-projLink')
+          projectStuff.changeCurrentProject(projectStuff.myProjects[`${attribute}`]) 
+          console.log('current project:')
+          console.log(projectStuff.currentProject)
+          displayTasks()
+        })
+        //add rmv button
         let projectRmvBtn = document.createElement('button')
         projectRmvBtn.innerHTML = '-'
         projectRmvBtn.classList.add('projectRmvBtn')
         projectRmvBtn.setAttribute("data-rmvBtn", (projectStuff.myProjects.length-1))
-        
-        listOfProjects.appendChild(projectListContainer)
-        projectListContainer.appendChild(projectItem)
-        projectListContainer.appendChild(projectRmvBtn)
+        projectRmvBtn.addEventListener('click', event => {
+          let attribute = event.target.getAttribute('data-rmvBtn');
+          let projectToRmv = document.querySelector(`[data-rmvBtn="${attribute}"]`)
+          let formProjRmv = document.querySelector(`[data-ddItem="${attribute}"]`)
+          projectStuff.myProjects.splice(projectStuff.myProjects.length-1,1);
+          projectToRmv.parentElement.remove()
+          formProjRmv.remove()
+          console.log(projectStuff.myProjects)
+      })
+      //append to listOfPRojects
+      listOfProjects.appendChild(projectListContainer)
+      projectListContainer.appendChild(projectItem)
+      projectListContainer.appendChild(projectRmvBtn)
 
-        let ddItem = document.createElement('option')
-        ddItem.innerHTML = (projectStuff.myProjects[newProject].name)
-        ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
-
-        myList.appendChild(ddItem)
-        
+      //append to form DD
+      let ddItem = document.createElement('option')
+      ddItem.innerHTML = (projectStuff.myProjects[projectStuff.myProjects.length-1].name)
+      ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
+      myList.appendChild(ddItem)  
     },
     test: function() {
         return ('test')
     },
-    addProjLinks: function() {
-        const addBtn = document.querySelector(`[data-projLink="${projectStuff.myProjects.length-1}"]`);
-        addBtn.addEventListener('click', event => {
-            let attribute = event.target.getAttribute('data-projLink')
-            console.log(projectStuff.myProjects[`${attribute}`])
-            console.log('test 2')
-            console.log(event.target.dataset);
-        })
-    },
-    rmvProjItems: function() {
-        const rmvBtn = document.querySelector(`[data-rmvBtn="${projectStuff.myProjects.length-1}"]`);
-        rmvBtn.addEventListener('click', event => {
-            let attribute = event.target.getAttribute('data-rmvBtn');
-            console.log(attribute)
-            let projectToRmv = document.querySelector(`[data-rmvBtn="${attribute}"]`)
-            let formProjRmv = document.querySelector(`[data-ddItem="${attribute}"]`)
-            console.log(formProjRmv)
-            console.log(projectToRmv)
-            projectStuff.myProjects.splice(attribute,1);
-            projectToRmv.parentElement.remove()
-            formProjRmv.remove()
-
-            
-
-
-        })
-    }
 }
 
+
+//FORM
 const Form = {
     createForm() {
       const formOverlay = document.createElement('div');
@@ -182,8 +178,7 @@ const Form = {
       exitButton.classList.add('exitButton');
       exitButton.innerHTML = "X"
       exitButton.addEventListener('click', Form.off)
-  
-  
+
       const formTitle = document.createElement('p');
       formTitle.classList.add('formTitle');
       formTitle.innerHTML ='Input Task Below';
@@ -198,7 +193,17 @@ const Form = {
 
       const myList = document.createElement('select')
       myList.setAttribute('id', 'myList')
-      myList.addEventListener('click', ddChange)
+      myList.addEventListener('click', event => {
+     
+        let mylist = document.getElementById("myList"); 
+        let ddInput = document.getElementById('projectDDItems')
+        console.log(mylist.options[myList.selectedIndex])
+        let selection = myList.selectedIndex + 1
+        ddInput.value = mylist.options[myList.selectedIndex].innerHTML;  
+        projectStuff.currentProject = projectStuff.myProjects[selection]
+        console.log(projectStuff.currentProject)
+  
+      })
 
       const ddInput = document.createElement('input')
       ddInput.setAttribute('type', 'text')
@@ -251,6 +256,14 @@ const Form = {
       
       const addTaskBtnContainer = document.createElement('div');
       addTaskBtnContainer.classList.add('addTaskBtnContainer', 'formItem');
+
+      const currentProj = document.createElement('button')
+      currentProj.innerHTML = 'consoleLog: current project'
+      currentProj.addEventListener('click', event => {
+        console.log(projectStuff.currentProject)
+        console.log(typeof projectStuff.currentProject)
+        projectStuff.currentProject
+      })
   
       const addTaskBtn = document.createElement('button');
       addTaskBtn.classList.add('addTaskBtn');
@@ -279,29 +292,21 @@ const Form = {
                 formContainer.appendChild(priorityContainer);
                   priorityContainer.appendChild(priorityLabel);
                   priorityContainer.appendChild(priorityInput);
+                formContainer.appendChild(currentProj)
                 formContainer.appendChild(addTaskBtnContainer);
                   addTaskBtnContainer.appendChild(addTaskBtn);}
-  
-    return formOverlay
+      return formOverlay
     },
-    on() {
-      
-      formOverlay.style.display = "block";
-    },
-    off() {
-      document.getElementById("formOverlay").style.display = "none";
-    } 
-  }
+  on() {
+    
+    formOverlay.style.display = "block";
+  },
+  off() {
+    document.getElementById("formOverlay").style.display = "none";
+  }  
+}
 
-function ddChange() {
-    let mylist = document.getElementById("myList"); 
-    let ddInput = document.getElementById('projectDDItems')
-    ddInput.value = mylist.options[myList.selectedIndex].innerHTML;  
-  }
+
 
               
-        
-        
-
-
-export { DOM, Form, ddChange}
+export { DOM, Form}

@@ -1,3 +1,4 @@
+import { testTask1, testTask2 } from './display'
 import{ DOM } from './DOM'
 
 
@@ -7,28 +8,30 @@ class Project {
     this.name = name
     this.displayed = false
     this.rmvBtnTog = false
+    this.tasks =[]
   }
 }
-
-
-//creating inbox
-
-
-
 
 const projectStuff = {
   myProjects: [],
   currentProject: '',
+  changeCurrentProject: function(item) {
+    projectStuff.currentProject = item
+  },
   createInbox: function() {
     const inbox = new Project('inbox')
     projectStuff.myProjects.push(inbox)
     inbox.displayed = true
-    projectStuff.changeProject(inbox)
+    projectStuff.changeCurrentProject(inbox)
+    console.log(this.currentProject)
   },
-  changeProject: function(item) {
-    projectStuff.currentProject = item
+  addNewProject: function () {
+    let project = new Project(prompt('whats your project?'))
+    projectStuff.myProjects.push(project);
+    projectStuff.changeCurrentProject(project)
     console.log(projectStuff.currentProject)
-    console.log('ran changeProject()')
+    DOM.appendProject()
+    console.log(projectStuff.myProjects)
   }
 }
 projectStuff.createInbox(); // how to make this into self-invoking function?
@@ -36,16 +39,5 @@ projectStuff.createInbox(); // how to make this into self-invoking function?
 
 
 
-
-function addNewProject () {
-    let project = new Project(prompt('whats your project?'))
-    projectStuff.myProjects.push(project);
-    
-    DOM.appendProject()
-    DOM.addProjLinks()
-    DOM.rmvProjItems()
-}
-
-
-export {addNewProject, projectStuff}
+export { projectStuff}
 
