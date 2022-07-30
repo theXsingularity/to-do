@@ -45,12 +45,13 @@ taskDiv.appendChild(projOutput);
 
 // displays array object by creating new DOM elements
 function displayTasks() {
-
   console.log('ran displayTasks 1')
   for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
     console.log('ran displayTasks 2')
     //check if displayed
     if(projectStuff.currentProject.tasks[i].displayed === false) {
+      console.log('current project')
+      console.log(projectStuff.currentProject)
       titleOutput.innerText = `Title: ${projectStuff.currentProject.tasks[i].title}`
       descriptionOutput.innerText = `Description: ${projectStuff.currentProject.tasks[i].description}`;
       dueDateOutput.innerText = `Due Date: ${projectStuff.currentProject.tasks[i].dueDate}`;
@@ -74,13 +75,12 @@ function displayTasks() {
 // ---- form functionality --- 
 function addTaskToList() {
   let newTask = new Task(taskTitleInput.value, descriptionInput.value, dueInput.value, priorityInput.value)
-
   projectStuff.currentProject.tasks.push(newTask)
   taskTitleInput.value= '';
   descriptionInput.value = '';
   dueInput.value = '';
   priorityInput.value = '';
-  displayTasks();
+  //displayTasks();
   Form.off();
   
   

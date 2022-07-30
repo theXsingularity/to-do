@@ -45,9 +45,13 @@ const DOM = {
     inboxBtn.classList.add('inbox');
     inboxBtn.classList.add('menuItem');
     inboxBtn.innerHTML='Inbox'
+    let ddItem = document.createElement('option')
+    ddItem.innerHTML = (projectStuff.myProjects[0].name)
+    ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
+    myList.appendChild(ddItem)  
     inboxBtn.addEventListener('click', event => {
-      projectStuff.changeCurrentProject(projectStuff.myProjects[0]) 
       removeAllChildNodes();
+      projectStuff.changeCurrentProject(projectStuff.myProjects[0]) 
       displayTasks();
       console.log('current project:')
       console.log(projectStuff.currentProject)
@@ -120,10 +124,10 @@ const DOM = {
           removeAllChildNodes();
           projectStuff.changeCurrentProject(projectStuff.myProjects[`${attribute}`]) 
           console.log(projectStuff.myProjects)
-          
-          displayTasks();
           console.log('current project:')
           console.log(projectStuff.currentProject)
+          displayTasks();
+          
           //displayTasks()
         })
         //add rmv button
@@ -161,7 +165,8 @@ const DOM = {
         return ('test')
     },
 }
-
+const myList = document.createElement('select')
+      myList.setAttribute('id', 'myList')
 
 //FORM
 const Form = {
@@ -196,14 +201,13 @@ const Form = {
       const ddContainer = document.createElement('div')
       ddContainer.classList.add('ddContainer')
 
-      const myList = document.createElement('select')
-      myList.setAttribute('id', 'myList')
+      
       myList.addEventListener('click', event => {
      
-        let mylist = document.getElementById("myList"); 
+        let list = document.getElementById("myList"); 
         let ddInput = document.getElementById('projectDDItems')
-        ddInput.value = mylist.options[myList.selectedIndex].innerHTML;  
-        projectStuff.currentProject = projectStuff.myProjects[myList.selectedIndex + 1]
+        ddInput.value = list.options[list.selectedIndex].innerHTML;  
+        projectStuff.currentProject = projectStuff.myProjects[list.selectedIndex]
         console.log("current project")
         console.log(projectStuff.currentProject)
   
