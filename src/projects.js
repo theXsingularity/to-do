@@ -11,20 +11,16 @@ class Project {
     this.tasks =[]
   }
 }
+const inbox = new Project('inbox');
+inbox.displayed = true;
 
 const projectStuff = {
-  myProjects: [],
-  currentProject: '',
+  myProjects: [inbox],
+  currentProject: inbox,
   changeCurrentProject: function(item) {
     projectStuff.currentProject = item
   },
-  createInbox: function() {
-    const inbox = new Project('inbox')
-    projectStuff.myProjects.push(inbox)
-    inbox.displayed = true
-    projectStuff.changeCurrentProject(inbox)
-    console.log(this.currentProject)
-  },
+  
   addNewProject: function () {
     let project = new Project(prompt('whats your project?'))
     projectStuff.myProjects.push(project);
@@ -34,7 +30,7 @@ const projectStuff = {
     console.log(projectStuff.myProjects)
   }
 }
-projectStuff.createInbox(); // how to make this into self-invoking function?
+
 
 
 

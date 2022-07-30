@@ -1,5 +1,5 @@
 import { projectStuff } from './projects'
-import { addTaskToList, displayTasks, inbox } from "./display";
+import { addTaskToList, displayTasks, inbox, removeAllChildNodes } from "./display";
 
 const DOM = {
 //--- LAYOUT
@@ -47,19 +47,17 @@ const DOM = {
     inboxBtn.innerHTML='Inbox'
     inboxBtn.addEventListener('click', event => {
       projectStuff.changeCurrentProject(projectStuff.myProjects[0]) 
+      removeAllChildNodes();
+      displayTasks();
       console.log('current project:')
       console.log(projectStuff.currentProject)
-  })
-
+    })
 
     const today = document.createElement('div');
     today.classList.add('today');
     today.classList.add('menuItem');
     today.innerHTML='Today'
 
-
-    
-    
     const upcoming = document.createElement('div');
     upcoming.classList.add('upcoming');
     upcoming.classList.add('menuItem');
@@ -79,7 +77,6 @@ const DOM = {
     const addProjectBtn = document.createElement('button');
     addProjectBtn.classList.add('addProjectBtn')
     addProjectBtn.innerHTML = "+"
-    
     addProjectBtn.addEventListener('click', projectStuff.addNewProject)
     
     const listOfProjects = document.createElement('div')
@@ -87,14 +84,12 @@ const DOM = {
     
     sidebar.appendChild(inboxBtn)
     sidebar.appendChild(today)
-    
     sidebar.appendChild(upcoming)
     sidebar.appendChild(projectsContainer)
         projectsContainer.appendChild(projectHeader)
             projectHeader.appendChild(projectsTitle)
             projectHeader.appendChild(addProjectBtn)
         projectsContainer.appendChild(listOfProjects)
-    
     
     return sidebar
     },
@@ -112,7 +107,7 @@ const DOM = {
     },
 //--- PROJECT STUFF
     appendProject: function() {
-        //let newProject = projectStuff.myProjects.length-1
+      //create projlink w/ btns container
         let projectListContainer = document.createElement('div')
         projectListContainer.classList.add('projectListContainer')
         //add list button
@@ -122,31 +117,41 @@ const DOM = {
         projectItem.setAttribute("data-projLink", (projectStuff.myProjects.length-1))
         projectItem.addEventListener('click', event => {
           let attribute = event.target.getAttribute('data-projLink')
+          removeAllChildNodes();
           projectStuff.changeCurrentProject(projectStuff.myProjects[`${attribute}`]) 
+          console.log(projectStuff.myProjects)
+          
+          displayTasks();
           console.log('current project:')
           console.log(projectStuff.currentProject)
-          displayTasks()
+          //displayTasks()
         })
         //add rmv button
         let projectRmvBtn = document.createElement('button')
         projectRmvBtn.innerHTML = '-'
         projectRmvBtn.classList.add('projectRmvBtn')
         projectRmvBtn.setAttribute("data-rmvBtn", (projectStuff.myProjects.length-1))
+        
         projectRmvBtn.addEventListener('click', event => {
           let attribute = event.target.getAttribute('data-rmvBtn');
           let projectToRmv = document.querySelector(`[data-rmvBtn="${attribute}"]`)
           let formProjRmv = document.querySelector(`[data-ddItem="${attribute}"]`)
-          projectStuff.myProjects.splice(projectStuff.myProjects.length-1,1);
+          projectStuff.myProjects.splice(attribute,1);
           projectToRmv.parentElement.remove()
           formProjRmv.remove()
+          console.log('myProjects')
           console.log(projectStuff.myProjects)
+          
       })
-      //append to listOfPRojects
+      //append list item to listOfProjects
       listOfProjects.appendChild(projectListContainer)
       projectListContainer.appendChild(projectItem)
       projectListContainer.appendChild(projectRmvBtn)
+      console.log( projectStuff.currentProject.rmvBtnTog)
+      projectStuff.currentProject.rmvBtnTog = true;
+      console.log( projectStuff.currentProject.rmvBtnTog)
 
-      //append to form DD
+      //append project to form DD
       let ddItem = document.createElement('option')
       ddItem.innerHTML = (projectStuff.myProjects[projectStuff.myProjects.length-1].name)
       ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
@@ -197,10 +202,9 @@ const Form = {
      
         let mylist = document.getElementById("myList"); 
         let ddInput = document.getElementById('projectDDItems')
-        console.log(mylist.options[myList.selectedIndex])
-        let selection = myList.selectedIndex + 1
         ddInput.value = mylist.options[myList.selectedIndex].innerHTML;  
-        projectStuff.currentProject = projectStuff.myProjects[selection]
+        projectStuff.currentProject = projectStuff.myProjects[myList.selectedIndex + 1]
+        console.log("current project")
         console.log(projectStuff.currentProject)
   
       })
@@ -260,8 +264,8 @@ const Form = {
       const currentProj = document.createElement('button')
       currentProj.innerHTML = 'consoleLog: current project'
       currentProj.addEventListener('click', event => {
+        console.log('current project:')
         console.log(projectStuff.currentProject)
-        console.log(typeof projectStuff.currentProject)
         projectStuff.currentProject
       })
   

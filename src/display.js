@@ -45,6 +45,7 @@ taskDiv.appendChild(projOutput);
 
 // displays array object by creating new DOM elements
 function displayTasks() {
+
   console.log('ran displayTasks 1')
   for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
     console.log('ran displayTasks 2')
@@ -55,15 +56,16 @@ function displayTasks() {
       dueDateOutput.innerText = `Due Date: ${projectStuff.currentProject.tasks[i].dueDate}`;
       priorityOutput.innerText = `Priority: ${projectStuff.currentProject.tasks[i].priority}`;
       //append DOM elements
-      taskDisplay.appendChild(taskDiv.cloneNode(true));
       taskDiv.appendChild(titleOutput);
       taskDiv.appendChild(descriptionOutput);
       taskDiv.appendChild(dueDateOutput);
       taskDiv.appendChild(priorityOutput);
       taskDiv.appendChild(projOutput);
+      taskDisplay.appendChild(taskDiv.cloneNode(true));
+    
       //now that it has been displayed - change displayed to true
       projectStuff.currentProject.tasks[i].displayed = true;
-      projectStuff.currentProject.tasks[i].rmvBtnTog = false;
+      
       
     } 
   }
@@ -80,8 +82,21 @@ function addTaskToList() {
   priorityInput.value = '';
   displayTasks();
   Form.off();
-  console.log(projectStuff.currentProject)
+  
   
 };
 
-export { Task, displayTasks, addTaskToList,  }
+function removeAllChildNodes() {
+  for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
+    console.log( projectStuff.currentProject.tasks[i].displayed)
+    projectStuff.currentProject.tasks[i].displayed = false
+    console.log( projectStuff.currentProject.tasks[i].displayed)
+    console.log('ran?????')
+  }
+    while (taskDisplay.firstChild) {
+      //console.log(taskDisplay.firstChild)
+      taskDisplay.removeChild(taskDisplay.firstChild);
+      console.log('removed children')
+  }
+}
+export { Task, displayTasks, addTaskToList, removeAllChildNodes  }
