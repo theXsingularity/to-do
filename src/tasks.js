@@ -6,6 +6,9 @@ import { projectStuff } from './projects'
 console.log(projectStuff.currentProject)
 
 
+function editTask() {
+  
+}
 
 
 

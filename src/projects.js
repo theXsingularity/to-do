@@ -11,6 +11,8 @@ class Project {
     this.tasks =[]
   }
 }
+
+//creating inbox
 const inbox = new Project('inbox');
 inbox.displayed = true;
 
@@ -20,19 +22,15 @@ const projectStuff = {
   changeCurrentProject: function(item) {
     projectStuff.currentProject = item
   },
-  
   addNewProject: function () {
     let project = new Project(prompt('whats your project?'))
     projectStuff.myProjects.push(project);
-    projectStuff.changeCurrentProject(project)
-    console.log(projectStuff.currentProject)
+    //projectStuff.changeCurrentProject(project)
+    //console.log(projectStuff.currentProject)
     DOM.appendProject()
     console.log(projectStuff.myProjects)
   }
 }
-
-
-
 
 
 export { projectStuff}

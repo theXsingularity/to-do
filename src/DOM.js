@@ -47,7 +47,7 @@ const DOM = {
     inboxBtn.innerHTML='Inbox'
     let ddItem = document.createElement('option')
     ddItem.innerHTML = (projectStuff.myProjects[0].name)
-    ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
+    //ddItem.setAttribute("data-ddItem", (projectStuff.myProjects.length-1))
     myList.appendChild(ddItem)  
     inboxBtn.addEventListener('click', event => {
       removeAllChildNodes();
@@ -316,5 +316,144 @@ const Form = {
 
 
 
+const Edit = {
+  editForm() {
+    const editOverlay = document.createElement('div');
+    editOverlay.setAttribute('id', 'editOverlay');
+    editOverlay.classList.add('editOverlay');
+
+    const editDisplayContainer = document.createElement('div');
+    editDisplayContainer.classList.add('editDisplayContainer');
+
+    const editForm = document.createElement('div');
+    editForm.classList.add('editForm');
+
+    const editHeader = document.createElement('div');
+    editHeader.classList.add('editHeader');
+
+    const editExitBtn = document.createElement('button');
+    editExitBtn.classList.add('editExitBtn');
+    editExitBtn.innerHTML = "X"
+    editExitBtn.addEventListener('click', Form.off)
+
+    const editTitle = document.createElement('p');
+    editTitle.classList.add('editTitle');
+    editTitle.innerHTML ='Input Task Below';
+
+    const editContainer = document.createElement('div')
+    editContainer.classList.add('formConatiner');
+
+    const editTaskTitleContainer = document.createElement('div');
+    editTaskTitleContainer.classList.add('editTaskTitleContainer', 'formItem');
+
+    const editddContainer = document.createElement('div')
+    editddContainer.classList.add('editddContainer')
+
+    const editddInput = document.createElement('input')
+    editddInput.setAttribute('type', 'text')
+    editddInput.setAttribute('id', 'projectDDItems')
+
+    const editTaskTitleLabel = document.createElement('label');
+    editTaskTitleLabel.classList.add('editTaskTitleLabel');
+    editTaskTitleLabel.setAttribute('for', 'taskTitleInput');
+    editTaskTitleLabel.innerHTML = 'Task:'
+
+    const editTaskTitleInput = document.createElement('input');
+    editTaskTitleInput.setAttribute('id', 'editTaskTitleInput');
+    editTaskTitleInput.setAttribute('type', 'text');
+
+    const editDescriptionContainer = document.createElement('div');
+    editDescriptionContainer.classList.add('editDescriptionContainer', 'formItem');
+
+    const editDescriptionLabel = document.createElement('label');
+    editDescriptionLabel.classList.add('editDescriptionLabel');
+    editDescriptionLabel.setAttribute('for', 'descriptionInput');
+    editDescriptionLabel.innerHTML = 'Description:'
+
+    const editDescriptionInput = document.createElement('input');
+    editDescriptionInput.setAttribute('id', 'editDescriptionInput');
+    editDescriptionInput.setAttribute('type', 'text');
+
+    const editDueContainer = document.createElement('div');
+    editDueContainer.classList.add('editDueContainer', 'formItem');
+
+    const editDueLabel = document.createElement('label');
+    editDueLabel.classList.add('editDueLabel');
+    editDueLabel.setAttribute('for', 'dueInput');
+    editDueLabel.innerHTML = 'Due:'
+
+    const editDueInput = document.createElement('input');
+    editDueInput.setAttribute('id', 'editDueInput');
+    editDueInput.setAttribute('type', 'text');
+
+    const editPriorityContainer = document.createElement('div');
+    editPriorityContainer.classList.add('editPriorityContainer', 'formItem');
+
+    const editPriorityLabel = document.createElement('label');
+    editPriorityLabel.classList.add('editPriorityLabel');
+    editPriorityLabel.setAttribute('for', 'priorityInput');
+    editPriorityLabel.innerHTML = 'Priority:'
+
+    const editPriorityInput = document.createElement('input');
+    editPriorityInput.setAttribute('id','editPriorityInput');
+    editPriorityInput.setAttribute('type', 'text');
+    
+    const editAddTaskBtnContainer = document.createElement('div');
+    editAddTaskBtnContainer.classList.add('editAddTaskBtnContainer', 'formItem');
+
+    const editCurrentProj = document.createElement('button')
+    editCurrentProj.innerHTML = 'consoleLog: current project'
+    editCurrentProj.addEventListener('click', event => {
+      console.log('current project:')
+      console.log(projectStuff.currentProject)
+      projectStuff.currentProject
+    })
+
+    const editAddTaskBtn = document.createElement('button');
+    editAddTaskBtn.classList.add('editAddTaskBtn');
+    editAddTaskBtn.innerHTML = "ADD"
+    editAddTaskBtn.addEventListener('click', addTaskToList)
+
+    //appending tree
+    {editOverlay.appendChild(editDisplayContainer);
+        editDisplayContainer.appendChild(editForm)
+            editForm.appendChild(editHeader);
+                editHeader.appendChild(editTitle);
+                editHeader.appendChild(editExitBtn);
+            editForm.appendChild(editContainer);
+            editContainer.appendChild(editddContainer)
+              editddContainer.appendChild(myList)
+              editddContainer.appendChild(editddInput)
+              editContainer.appendChild(editTaskTitleContainer)
+                editTaskTitleContainer.appendChild(editTaskTitleLabel);
+                editTaskTitleContainer.appendChild(editTaskTitleInput)
+              editContainer.appendChild(editDescriptionContainer);
+                editDescriptionContainer.appendChild(editDescriptionLabel);
+                editDescriptionContainer.appendChild(editDescriptionInput);
+              editContainer.appendChild(editDueContainer);
+                editDueContainer.appendChild(editDueLabel);
+                editDueContainer.appendChild(editDueInput);
+              editContainer.appendChild(editPriorityContainer);
+                editPriorityContainer.appendChild(editPriorityLabel);
+                editPriorityContainer.appendChild(editPriorityInput);
+              editContainer.appendChild(editCurrentProj)
+              editContainer.appendChild(editAddTaskBtnContainer);
+                editAddTaskBtnContainer.appendChild(editAddTaskBtn);}
+    return editOverLay
+  },
+editOn() {
+  console.log('wrking')
+  editOverLay.style.display = "block";
+},
+editOff() {
+  document.getElementById("editOverLay").style.display = "none";
+}, 
+editTest(){
+  console.log('test')
+} 
+}
+
+
+
               
-export { DOM, Form}
+export { DOM, Form, Edit}

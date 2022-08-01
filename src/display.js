@@ -36,22 +36,21 @@ let dueDateOutput = document.createElement('div');
 let priorityOutput = document.createElement('div');
 let projOutput = document.createElement('div');
 
+
 //appending elements to task display DOM element 
-taskDiv.appendChild(titleOutput);
+
+/* taskDiv.appendChild(titleOutput);
 taskDiv.appendChild(descriptionOutput);
 taskDiv.appendChild(dueDateOutput);
 taskDiv.appendChild(priorityOutput);
-taskDiv.appendChild(projOutput);
+taskDiv.appendChild(projOutput); */
 
 // displays array object by creating new DOM elements
 function displayTasks() {
-  console.log('ran displayTasks 1')
   for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
-    console.log('ran displayTasks 2')
     //check if displayed
     if(projectStuff.currentProject.tasks[i].displayed === false) {
-      console.log('current project')
-      console.log(projectStuff.currentProject)
+      
       titleOutput.innerText = `Title: ${projectStuff.currentProject.tasks[i].title}`
       descriptionOutput.innerText = `Description: ${projectStuff.currentProject.tasks[i].description}`;
       dueDateOutput.innerText = `Due Date: ${projectStuff.currentProject.tasks[i].dueDate}`;
@@ -62,12 +61,19 @@ function displayTasks() {
       taskDiv.appendChild(dueDateOutput);
       taskDiv.appendChild(priorityOutput);
       taskDiv.appendChild(projOutput);
+
+      const editBtn = document.createElement('button')
+      editBtn.innerHTML = 'edit'
+      editBtn.addEventListener('click', event => {
+        console.log('test')
+      });
+      taskDiv.appendChild(editBtn);
+      
       taskDisplay.appendChild(taskDiv.cloneNode(true));
     
       //now that it has been displayed - change displayed to true
       projectStuff.currentProject.tasks[i].displayed = true;
-      
-      
+      console.log('task displayed')
     } 
   }
 }
@@ -82,21 +88,17 @@ function addTaskToList() {
   priorityInput.value = '';
   //displayTasks();
   Form.off();
-  
-  
 };
 
 function removeAllChildNodes() {
   for (let i=0; i<projectStuff.currentProject.tasks.length; i++) {
-    console.log( projectStuff.currentProject.tasks[i].displayed)
     projectStuff.currentProject.tasks[i].displayed = false
-    console.log( projectStuff.currentProject.tasks[i].displayed)
-    console.log('ran?????')
   }
     while (taskDisplay.firstChild) {
       //console.log(taskDisplay.firstChild)
       taskDisplay.removeChild(taskDisplay.firstChild);
       console.log('removed children')
   }
+  console.log('ran removed allchildNodes')
 }
 export { Task, displayTasks, addTaskToList, removeAllChildNodes  }
