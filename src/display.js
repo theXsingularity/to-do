@@ -38,7 +38,7 @@ let projOutput = document.createElement('div');
 const editBtn = document.createElement('button')
 editBtn.innerHTML = 'edit'
 editBtn.addEventListener('click', event => {
-  console.log('test')
+  console.log('testing')
 });
 
 //appending elements to task display DOM element 
