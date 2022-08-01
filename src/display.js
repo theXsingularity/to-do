@@ -35,7 +35,11 @@ let descriptionOutput = document.createElement('div');
 let dueDateOutput = document.createElement('div');
 let priorityOutput = document.createElement('div');
 let projOutput = document.createElement('div');
-
+const editBtn = document.createElement('button')
+editBtn.innerHTML = 'edit'
+editBtn.addEventListener('click', event => {
+  console.log('test')
+});
 
 //appending elements to task display DOM element 
 
@@ -61,12 +65,6 @@ function displayTasks() {
       taskDiv.appendChild(dueDateOutput);
       taskDiv.appendChild(priorityOutput);
       taskDiv.appendChild(projOutput);
-
-      const editBtn = document.createElement('button')
-      editBtn.innerHTML = 'edit'
-      editBtn.addEventListener('click', event => {
-        console.log('test')
-      });
       taskDiv.appendChild(editBtn);
       
       taskDisplay.appendChild(taskDiv.cloneNode(true));
